@@ -1,0 +1,13 @@
+Vain yhden luokan sovelluksia voi ajaa?
+	Ristinolla.jar ei aukene - erikseen Main ja Ristinolla (Main k‰ynnist‰‰ Ristinollan)
+	FXRistinolla.jar toimii. T‰sm‰lleen sama koodi mutta laitettu vain yhteen luokkaan
+	
+	
+Voi olla vain yksi sovellus kerrallaan testattavana. Kun lis‰si setupiin toisen avauksen, se tuli tilalle
+ja vain yksi ikkuna auki
+
+
+Capture image
+	Jos ei anna parametreja, ottaa koko ikkunasta kuvan ja tallettaa sen log-tiedostoon
+	(locator = Active Window, logImage = True)
+	voi antaa alueen (joka luodaan ensin ja annetaan sitten locatoriksi), noden, Scenen, Point2D:n jne
