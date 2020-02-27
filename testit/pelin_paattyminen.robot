@@ -7,7 +7,7 @@ Suite Teardown    Close Javafx Application
 
 *** Variables ***
 ${fxristinolla}    C:\\Users\\iisetala\\Omat jar tiedostot\\FXRistinolla.jar
-${ristinollaLuokilla}    C:\\Users\\iisetala\\Omat jar tiedostot\\RistinollaPeli.jar    
+ 
 
 *** Keywords ***
 Avaa sovellus
