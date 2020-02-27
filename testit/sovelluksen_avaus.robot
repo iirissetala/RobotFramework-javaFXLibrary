@@ -1,13 +1,13 @@
 *** Settings ***
 Library    Remote    http://localhost:8270    WITH NAME    JavaFXLibrary
+Library    Collections
+
 Suite Setup    Avaa sovellus
 Suite Teardown    Close Javafx Application
 
 *** Variables ***
-${ristinolla}    C:\\Users\\iisetala\\Desktop\\Ristinolla.jar
-${klikkilaskuri}    C:\\Users\\iisetala\\Desktop\\Klikkilaskuri_javaFX.jar
-${fxristinolla}    C:\\Users\\iisetala\\Desktop\\FXRistinolla.jar
-
+${fxristinolla}    C:\\Users\\iisetala\\Omat jar tiedostot\\FXRistinolla.jar
+${ristinollaLuokilla}    C:\\Users\\iisetala\\Omat jar tiedostot\\RistinollaPeli.jar    
 
 *** Keywords ***
 Avaa sovellus
@@ -16,7 +16,7 @@ Avaa sovellus
 Ikkunalista konsoliin
     ${ikkunat}=    List Windows 
     Log To Console    ${ikkunat} 
-    Log    ${ikkunat}
+    Log List   ${ikkunat}
 
 *** Test Cases ***
 Listaa ikkunat
@@ -30,8 +30,8 @@ Sovellus avautuu X:n vuorolla
 Kaikki napit ovat tyhjia avatessa
     ${napit}    Find All    .button
     :FOR    ${nappi}    IN    @{napit}
-    \    Node Should Not Have Text    .button    X
-    \    Node Should Not Have Text    .button    O
+    \    ${teksti}=    Get Node Text    ${nappi}
+    \    Should Not Contain Any    ${teksti}    X    O
     
     
     

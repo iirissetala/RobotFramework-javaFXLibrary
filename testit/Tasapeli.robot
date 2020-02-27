@@ -1,10 +1,12 @@
 *** Settings ***
 Library    Remote    http://localhost:8270    WITH NAME    JavaFXLibrary
+Library    Collections
+
 Suite Setup    Avaa sovellus
 Suite Teardown    Close Javafx Application
 
 *** Variables ***
-${fxristinolla}    C:\\Users\\iisetala\\Desktop\\FXRistinolla.jar
+${fxristinolla}    C:\\Users\\iisetala\\Omat jar tiedostot\\FXRistinolla.jar  
 
 *** Keywords ***
 Avaa sovellus

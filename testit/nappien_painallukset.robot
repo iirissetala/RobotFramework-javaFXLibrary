@@ -1,21 +1,23 @@
 *** Settings ***
 Library    Remote    http://localhost:8270    WITH NAME    JavaFXLibrary
+Library    Collections
+
 Suite Setup    Avaa sovellus
 Suite Teardown    Close Javafx Application
 
 *** Variables ***
-${fxristinolla}    C:\\Users\\iisetala\\Desktop\\FXRistinolla.jar
+${fxristinolla}    C:\\Users\\iisetala\\Omat jar tiedostot\\FXRistinolla.jar
+${ristinollaLuokilla}    C:\\Users\\iisetala\\Omat jar tiedostot\\RistinollaPeli.jar    
 
 *** Keywords ***
 Avaa sovellus
-    Launch Javafx Application    ${fxristinolla}  
+    Launch Javafx Application    ${fxristinolla} 
         
 *** Test Cases ***
 Napin painalluksesta teksti muuttuu
     ${napit}    Find All    .button
-    Sleep    2s
+    Log List    ${napit}
     Click On    ${napit}[5]
-    Sleep    2s
     Node Should Have Text    ${napit}[5]    X 
     Node Should Not Have Text    ${napit}[5]    O
     Capture image    ${napit}[5]
@@ -23,7 +25,6 @@ Napin painalluksesta teksti muuttuu
 Varatun paikan napin klikkaus antaa ilmoituksen
     ${napit}    Find All    .button
     Click On    ${napit}[5]
-    Sleep    2s
     ${ilmoitukset}    Find All   .label  
     Node Should Have Text    ${ilmoitukset}[0]    Vuoro: O
     Node Should Have Text    ${ilmoitukset}[1]    Ruutu on jo varattu, valitse toinen ruutu
@@ -38,7 +39,7 @@ Nappeihin tulee oikea merkki ja vuoro paivittyy
     Click On     ${napit}[4]
     Node Should Have Text    ${napit}[4]    X
     Node Should Have Text    ${ilmoitukset}[0]    Vuoro: O
-    Node Should Not Have Text    ${napit}[1]    X || O
+    Node Should Have Text    ${napit}[1]    ${SPACE}
     Capture Image
     
     

@@ -1,10 +1,13 @@
 *** Settings ***
 Library    Remote    http://localhost:8270    WITH NAME    JavaFXLibrary
+Library    Collections
+
 Suite Setup    Avaa sovellus
 Suite Teardown    Close Javafx Application
 
 *** Variables ***
-${fxristinolla}    C:\\Users\\iisetala\\Desktop\\FXRistinolla.jar
+${fxristinolla}    C:\\Users\\iisetala\\Omat jar tiedostot\\FXRistinolla.jar
+${ristinollaLuokilla}    C:\\Users\\iisetala\\Omat jar tiedostot\\RistinollaPeli.jar    
 
 *** Keywords ***
 Avaa sovellus
@@ -18,15 +21,14 @@ Voiton jalkeen teksti paivittyy
     Click On    ${napit}[4]
     Click On    ${napit}[5]
     Click On    ${napit}[8]
-    Sleep    2s
     ${ilmoitus}    Find    .label
     Node Should Have Text    ${ilmoitus}    Loppu! 
     
 Voiton jalkeen ei voi enaa tehda siirtoja
     ${napit}    Find All    css=Button
     Click On    ${napit}[0]
-    Sleep    2s
     ${ilmoitukset}    Find All    css=Label
+    Log List    ${ilmoitukset}
     Node Should Have Text    ${ilmoitukset}[0]    Loppu!
     Node Should Have Text    ${ilmoitukset}[1]    Peli on loppu, ei siirtoja
     
