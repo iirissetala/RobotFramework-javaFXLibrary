@@ -13,7 +13,8 @@ Avaa sovellus
 Kaikissa napeissa X tai O
     ${napit}    Find All    .button
     :FOR    ${nappi}    IN    @{napit}
-    \    Node Should Not Have Text    ${nappi}     X || O  
+    \    ${teksti}=    Get Node Text    ${nappi}
+    \    Should Contain Any    ${teksti}    X    O    
            
 *** Test Cases ***
 Tasapelin jalkeen ei tyhjia nappeja
